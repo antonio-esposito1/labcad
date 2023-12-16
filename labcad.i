@@ -730,7 +730,7 @@ struct device {
  char devicename[20];
  char ipaddress[16];
  int deivceid;
-} myDevice, devices[80], *devicePtr;
+} myDevice = {"mivpe015", "10.176.1.39", 1}, devices[80], *devicePtr;
 
 
 
@@ -738,5 +738,13 @@ struct device {
 
 int main() {
   printf("Hello Antonio\n");
+  printf("%s %s %d\n", myDevice.devicename, myDevice.ipaddress, myDevice.deivceid);
+  devicePtr = &myDevice;
+  printf("%s\n", devicePtr->devicename);
+  printf("%s\n", devicePtr->ipaddress);
+  printf("%d\n", devicePtr->deivceid);
+  myDevice.devicename = "mivpe016";
+  myDevice.ipaddress = "10.176.1.40";
+  myDevice.deivceid = 1;
   return 0;
 }

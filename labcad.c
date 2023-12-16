@@ -16,12 +16,31 @@ typedef struct device Device;
 
 Device router1, router2;
 
+
+union number {
+	int x;
+	double y;
+} value = {10};
 //struct device myDevice;
 //struct device devices[80];
 //struct device *devicePtr;
 
+
+
 int main() {
   printf("Hello Antonio\n");
+
+FILE *cfPtr = NULL; // 
+
+if ((cfPtr = fopen("devices.txt", "w")) == NULL) {
+	puts("File could not be opened");
+}
+else {
+	fprintf(cfPtr, "%s %s %d\n", myDevice.devicename, myDevice.ipaddress, myDevice.deivceid);
+}
+
+fclose(cfPtr);
+
   printf("%s %s %d\n", myDevice.devicename, myDevice.ipaddress, myDevice.deivceid);
   devicePtr = &myDevice; //assegna l'indirizzo di myDevice a devicePtr
   printf("%s %s %d\n", devicePtr->devicename, devicePtr->ipaddress, devicePtr->deivceid);
@@ -43,6 +62,11 @@ int main() {
   devicePtr = &router2;
   printf("%s %s %d\n", devicePtr->devicename, devicePtr->ipaddress, devicePtr->deivceid);
 
-  
+  value.x = 100;
+  printf("int: %d\ndouble: %.2f\n\n", value.x, value.y);
+
+  value.y = 100.0;
+  printf("int: %d\ndouble: %.2f\n\n", value.x, value.y);
+
   return 0;
 }
